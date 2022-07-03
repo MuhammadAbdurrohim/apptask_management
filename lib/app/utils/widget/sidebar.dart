@@ -1,36 +1,7 @@
 import 'package:apptask_management/app/routes/app_pages.dart';
-import 'package:apptask_management/app/utils/widget/sidebar.dart';
 import 'package:flutter/material.dart';
-
 import 'package:get/get.dart';
 import 'package:ionicons/ionicons.dart';
-
-
-import '../controllers/home_controller.dart';
-
-class HomeView extends GetView<HomeController> {
-  const HomeView ({Key? key}) : super(key: key);
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.blue[100],
-      body: Row(
-        children: [
-        const  Expanded(
-            flex: 2,
-            child: SideBar(),
-          ),  
-          Expanded(
-            flex: 15,
-            child: Container(
-              color: Colors.white,
-            ),
-          )
-        ],
-      ),
-    );
-  }
-}
 
 class SideBar extends StatelessWidget {
   const SideBar({
@@ -40,7 +11,7 @@ class SideBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Drawer(
-      elevation: 5,
+    elevation: 5,
     child: Container(
       height: Get.height,
       color: Colors.blue[100],
