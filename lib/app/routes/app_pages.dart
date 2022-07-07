@@ -11,6 +11,7 @@ import '../modules/profile/views/profile_view.dart';
 import '../modules/task/bindings/task_binding.dart';
 import '../modules/task/views/task_view.dart';
 
+
 part 'app_routes.dart';
 
 class AppPages {
