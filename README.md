@@ -8,3 +8,8 @@ Hasil Tampilan dari video youtube 03 |Home screen, drawer menu / sidebar menu
 
 Hasil tampilan youtube ke 4, 5, 6, 7 sekian dan terimakasih sampai ketemu lagi
 ![him](https://user-images.githubusercontent.com/85945415/177826065-2a8d051c-c6ba-474f-98cc-1994d20c6b0d.png)
+
+
+Hasil tampilan youtube ke 8
+
+![hym8](https://user-images.githubusercontent.com/85945415/178285824-73750887-707a-4a47-9539-1c6970681041.png)
