@@ -1,8 +1,7 @@
+import 'package:apptask_management/app/routes/app_pages.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:ionicons/ionicons.dart';
-
-import '../../routes/app_pages.dart';
 import 'style/AppColors.dart';
 
 // ignore: camel_case_types
