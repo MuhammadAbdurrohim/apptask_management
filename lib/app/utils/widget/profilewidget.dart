@@ -19,7 +19,7 @@ class profileW extends StatelessWidget {
             child: ClipRRect(
                     child: CircleAvatar(
                       backgroundColor: Colors.amber,
-                      radius: 150,
+                      radius: 120,
                       foregroundImage: NetworkImage(
                           'https://images.unsplash.com/photo-1511367461989-f85a21fda167?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8cHJvZmlsZXxlbnwwfHwwfHw%3D&w=1000&q=80'),
                     ),
@@ -59,9 +59,9 @@ class profileW extends StatelessWidget {
             ),
           ClipRect(
           child: CircleAvatar(
-          backgroundColor: Colors.amber,
-          radius: 150,
-          foregroundImage: NetworkImage(
+                        backgroundColor: Colors.amber,
+                        radius: 80,
+                        foregroundImage: NetworkImage(
                         'https://images.unsplash.com/photo-1511367461989-f85a21fda167?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8cHJvZmlsZXxlbnwwfHwwfHw%3D&w=1000&q=80'),
                   ),
                 ),

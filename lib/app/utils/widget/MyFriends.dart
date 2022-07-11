@@ -1,3 +1,5 @@
+
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:ionicons/ionicons.dart';
@@ -23,7 +25,7 @@ class MyFriends extends StatelessWidget {
                   const Text(
                     'My Friends',
                     style:
-                        TextStyle(color: AppColors.primaryText, fontSize: 20),
+                        TextStyle(color: AppColors.primaryText, fontSize: 30),
                   ),
                   const Spacer(),
                   GestureDetector(
@@ -44,23 +46,21 @@ class MyFriends extends StatelessWidget {
                 height: 20,
               ),
               SizedBox(
-                height: 400,
+                height: 200,
                 child: GridView.builder(
                   shrinkWrap: true,
-                  itemCount: 6,
-                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                      crossAxisCount: 3,
+                  itemCount: 10,
+                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: context.isPhone ? 2 : 3,
                       crossAxisSpacing: 20,
                       mainAxisSpacing: 20),
                   itemBuilder: (context, index) {
                     return Column(
                       children: [
                         ClipRRect(
-                          borderRadius: BorderRadius.circular(50),
-                          child: const CircleAvatar(
-                            backgroundColor: Colors.amber,
-                            radius: 40,
-                            foregroundImage: NetworkImage(
+                          borderRadius: BorderRadius.circular(100),
+                          child: const Image(
+                            image: NetworkImage(
                                 'https://images.unsplash.com/photo-1511367461989-f85a21fda167?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8cHJvZmlsZXxlbnwwfHwwfHw%3D&w=1000&q=80'),
                           ),
                         ),
