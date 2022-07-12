@@ -51,13 +51,13 @@ class FriendsView extends GetView<FriendsController> {
                               // ignore: prefer_const_literals_to_create_immutables
                               children: [
                                 const Text(
-                                  'Task Management',
+                                  'AppTask Management',
                                   style: TextStyle(
                                       fontSize: 20,
                                       color: AppColors.primaryText),
                                 ),
                                 const Text(
-                                  'manage task made easy with firend',
+                                  'Bismillah pasti bisa jangan mengeluh',
                                   style: TextStyle(
                                       fontSize: 14,
                                       color: AppColors.primaryText),

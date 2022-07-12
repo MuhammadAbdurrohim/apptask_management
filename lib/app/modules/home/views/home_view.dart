@@ -59,7 +59,7 @@ class HomeView extends GetView<HomeController> {
                                         color: AppColors.primaryText),
                                   ),
                                   const Text(
-                                    'Bismillah pasti bisa jangan mengeluh',
+                                    'Kuis pertemuan 14',
                                     style: TextStyle(
                                         fontSize: 14,
                                         color: AppColors.primaryText),

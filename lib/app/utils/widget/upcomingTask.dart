@@ -89,12 +89,12 @@ class UpcomingTask extends StatelessWidget {
                           ),
                         ),
                         const Text(
-                          'Pemrograman Mobile',
+                          'Pemrograman Flutter dart',
                           style: TextStyle(
                               color: AppColors.primaryText, fontSize: 20),
                         ),
                         const Text(
-                          'Deadline',
+                          'Akhir tugas',
                           style: TextStyle(
                               color: AppColors.primaryText, fontSize: 15),
                         ),
@@ -162,12 +162,12 @@ class UpcomingTask extends StatelessWidget {
                           ),
                         ),
                         const Text(
-                          'Pemrograman Mobile',
+                          'Pemrograman Flutter dart',
                           style: TextStyle(
                               color: AppColors.primaryText, fontSize: 20),
                         ),
                         const Text(
-                          'Deadline',
+                          'Akhir tugas',
                           style: TextStyle(
                               color: AppColors.primaryText, fontSize: 15),
                         ),

@@ -84,22 +84,145 @@ class TaskView extends GetView<TaskController> {
                 //content / isi page / screen
                 Expanded(
                   child: Container(
-                    padding: const EdgeInsets.all(50),
-                    margin: !context.isPhone
-                        ? const EdgeInsets.all(20)
-                        : const EdgeInsets.all(0),
+                    padding: !context.isPhone
+                          ? const EdgeInsets.all(50)
+                          : const EdgeInsets.all(20),
+                      margin: !context.isPhone
+                          ? const EdgeInsets.all(20)
+                          : const EdgeInsets.all(0),
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: !context.isPhone
+                            ? BorderRadius.circular(50)
+                            : BorderRadius.circular(30),
+                      ),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                                      'My AppTask',
+                                      style: TextStyle(
+                                        color: AppColors.primaryText,
+                                        fontSize: 25,
+                                      ),
+                                    ),
+                                    const SizedBox(
+                                  height: 20,
+                                ),
+                                Expanded(
+              
+              child: ListView.builder(
+                clipBehavior: Clip.antiAlias,
+                itemCount: 8,
+                shrinkWrap: true,
+                itemBuilder: (context, index){
+                  return Container(
+                    height: 200,
                     decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: !context.isPhone
-                          ? BorderRadius.circular(50)
-                          : BorderRadius.circular(30),
+                      borderRadius: BorderRadius.circular(20),
+                      color: AppColors.cardBg,
                     ),
+                    margin: EdgeInsets.all(10),
+                    padding: const EdgeInsets.all(20),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Row(
+                          children: [
+                            ClipRRect(
+                              borderRadius: BorderRadius.circular(25),
+                              child: const CircleAvatar(
+                                backgroundColor: Colors.amber,
+                                radius: 20,
+                                foregroundImage: NetworkImage(
+                                    'https://images.unsplash.com/photo-1511367461989-f85a21fda167?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8cHJvZmlsZXxlbnwwfHwwfHw%3D&w=1000&q=80'),
+                              ),
+                            ),
+                            ClipRRect(
+                              borderRadius: BorderRadius.circular(25),
+                              child: const CircleAvatar(
+                                backgroundColor: Colors.amber,
+                                radius: 20,
+                                foregroundImage: NetworkImage(
+                                    'https://images.unsplash.com/photo-1511367461989-f85a21fda167?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8cHJvZmlsZXxlbnwwfHwwfHw%3D&w=1000&q=80'),
+                              ),
+                            ),
+                            const Spacer(),
+                            Container(
+                              height: 25,
+                              width: 80,
+                              color: AppColors.primaryBg,
+                              child: const Center(
+                                  child: Text(
+                                '100%',
+                                style: TextStyle(
+                                  color: AppColors.primaryText,
+                                ),
+                              )),
+                            ),
+                          ],
+                        ),
+                        const Spacer(),
+                        Container(
+                          height: 25,
+                          width: 80,
+                          color: AppColors.primaryBg,
+                          child: const Center(
+                            child: Text(
+                              '10/10 task',
+                              style: TextStyle(
+                                color: AppColors.primaryText,
+                              ),
+                            ),
+                          ),
+                        ),
+                        const Text(
+                          'Pemrograman Flutter dart',
+                          style: TextStyle(
+                              color: AppColors.primaryText, fontSize: 20),
+                        ),
+                        const Text(
+                          'Akhir tugas',
+                          style: TextStyle(
+                              color: AppColors.primaryText, fontSize: 15),
+                        ),
+                      ],
+                    ),
+                  );
+                },
+        ),
+          ),  
+              ],      
+              ),
                   ),
-                ),
-              ],
-            ),
-          ),
+                )
+              ]),
+          )
         ],
+      ),
+      floatingActionButton: Align(
+        alignment: Alignment(0.95, 0.95),
+        child: FloatingActionButton.extended(
+          onPressed: () {
+            Get.bottomSheet(
+              Container(
+                margin: context.isPhone
+                ? EdgeInsets.zero
+                : EdgeInsets.only(left: 150, right: 150),
+                height: Get.height,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.only(
+                    topLeft: Radius.circular(20),
+                    topRight: Radius.circular(20)
+                  ),
+                  color: Colors.white,
+                ),
+              ),
+            );
+          },
+          label: Text('Add Task'),
+          icon: Icon(Ionicons.add),
+        ),
       ),
     );
   }
