@@ -2,13 +2,33 @@ import 'package:apptask_management/app/routes/app_pages.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
 class AuthController extends GetxController {
   FirebaseFirestore firestore = FirebaseFirestore.instance;
   UserCredential? _userCredential;
-  Future signInWithGoogle() async {
+  final GlobalKey<FormState> formkey = GlobalKey<FormState>();
+  late TextEditingController searchFriendsController;
+
+  var kataCari;
+
+  var hasilPencarian;
+
+   @override
+  void onInit() {
+    super.onInit();
+    searchFriendsController = TextEditingController();
+  }
+
+  @override
+  void onReady() {
+    super.onReady();
+    searchFriendsController.dispose();
+  }
+
+  Future<void> signInWithGoogle() async {
   // Trigger the authentication flow
   final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
 
@@ -39,6 +59,19 @@ print(googleUser!.email);
       'photo': googleUser.photoUrl,
       'createdAt': _userCredential!.user!.metadata.creationTime.toString(),
       'lastLoginAt': _userCredential!.user!.metadata.lastSignInTime.toString(),
+     // 'list_cari': [R,RO,ROH,ROHIM]
+  }).then((value) {
+    String temp = '';
+    try {
+      for (var i = 0; i < googleUser.displayName!.length; i++) {
+        temp = temp + googleUser.displayName! [i];
+        users.doc(googleUser.email).set({
+          'list_cari': FieldValue.arrayUnion([temp.toUpperCase()])
+        }, SetOptions(merge: true));
+      }
+    } catch (e) {
+      print(e);
+    }
   });
   } else {
     users.doc(googleUser.email).set({
@@ -50,9 +83,45 @@ print(googleUser!.email);
   
 }
 Future logout()async{
+
+var kataCari  = [].obs;
+var hasilPencarian = [].obs as hasil;
+
   await FirebaseAuth.instance.signOut();
   await GoogleSignIn().signOut();
   Get.offAllNamed(Routes.LOGIN);
 }
+  void searchFriends(String keyword) async {
+    CollectionReference users = firestore.collection('users');
+
+    if (keyword.isNotEmpty) {
+    final hasilQuery =  await users
+      .where('list_cari', arrayContains: keyword.toLowerCase())
+      .get();
+      
+      if (hasilQuery.docs.isNotEmpty) {
+        for (var i = 0; i < hasilQuery.docs.length; i++) {
+          kataCari.add(hasilQuery.docs[i].data() as Map<String, dynamic>);
+          
+        }
+      }
+
+    if (kataCari.isNotEmpty) {
+      kataCari.forEach((element) {
+        print(element);
+      hasilPencarian.add(element);
+      });
+      kataCari.clear();
+    }
+
+    }else{
+      kataCari.value = [];
+      hasilPencarian.value = [];
+    }
+    kataCari.refresh();
+    hasilPencarian.refresh();
+  }
 }
-  
+
+class hasil {
+}
