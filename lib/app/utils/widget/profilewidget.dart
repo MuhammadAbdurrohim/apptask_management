@@ -55,7 +55,7 @@ class profileW extends StatelessWidget {
         child: Column(
           children: const [
             SizedBox(
-              height: 40,
+              height: 10,
             ),
           ClipRect(
           child: CircleAvatar(
@@ -66,7 +66,7 @@ class profileW extends StatelessWidget {
                   ),
                 ),
                 SizedBox(
-                  height: 20,
+                  height: 10,
                   ),
                   Text(
                   'Muhammad Abdurrohim',
