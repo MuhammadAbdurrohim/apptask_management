@@ -1,5 +1,7 @@
 
 
+import 'package:apptask_management/app/data/controller/auth_controller.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:ionicons/ionicons.dart';
@@ -7,9 +9,7 @@ import '../../routes/app_pages.dart';
 import '../style/AppColors.dart';
 
 class MyFriends extends StatelessWidget {
-  const MyFriends({
-    Key? key,
-  }) : super(key: key);
+  final authCon = Get.find<AuthController>();
 
   @override
   Widget build(BuildContext context) {
@@ -45,32 +45,52 @@ class MyFriends extends StatelessWidget {
               const SizedBox(
                 height: 20,
               ),
-              SizedBox(
-                height: 200,
-                child: GridView.builder(
-                  shrinkWrap: true,
-                  itemCount: 10,
-                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                      crossAxisCount: context.isPhone ? 2 : 3,
-                      crossAxisSpacing: 20,
-                      mainAxisSpacing: 20),
-                  itemBuilder: (context, index) {
-                    return Column(
-                      children: [
-                        ClipRRect(
-                          borderRadius: BorderRadius.circular(100),
-                          child: const Image(
-                            image: NetworkImage(
-                                'https://images.unsplash.com/photo-1511367461989-f85a21fda167?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8cHJvZmlsZXxlbnwwfHwwfHw%3D&w=1000&q=80'),
-                          ),
-                        ),
-                        Text('Muhammad Abdurrohim',
-                            style: TextStyle(color: AppColors.primaryText))
-                      ],
-                    );
+              StreamBuilder<DocumentSnapshot<Map<String, dynamic>>>(
+                  stream: authCon.streamFriends(),
+                  builder: (context, snapshot) {
+                    if(snapshot.connectionState == ConnectionState.waiting) {
+                      return const Center(child: CircularProgressIndicator());
+                    }
+          var myFriends = (snapshot.data!.data()
+          as Map<String, dynamic>)['emailFriends'] as List;
+                    
+                    
+                    
+                  
+                    return GridView.builder(
+                    shrinkWrap: true,
+                    itemCount: myFriends.length,
+                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                        crossAxisCount: context.isPhone ? 2 : 3,
+                        crossAxisSpacing: 20,
+                        mainAxisSpacing: 20),
+                    itemBuilder: (context, index) {
+                      return StreamBuilder<DocumentSnapshot<Map<String, dynamic>>>(
+                        stream: authCon.streamUsers(myFriends[index]),
+                        builder: (context, snapshot2) {
+                          if(snapshot.connectionState == ConnectionState.waiting) {
+                      return const Center(child: CircularProgressIndicator());
+                    }
+                    var data = snapshot2.data!.data();
+                          return Column(
+                            children: [
+                              ClipRRect(
+                                borderRadius: BorderRadius.circular(100),
+                                child:  Image(
+                                  image: NetworkImage(
+                                      data!['photo']),
+                                ),
+                              ),
+                              Text(data!['name'],
+                                  style: TextStyle(color: AppColors.primaryText)
+                                  )
+                            ],
+                          );
+                        }
+                      );
+                    });
                   },
                 ),
-              )
             ],
           ),
         ),

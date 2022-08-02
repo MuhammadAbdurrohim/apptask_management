@@ -2,6 +2,7 @@
 
 import 'package:apptask_management/app/data/controller/auth_controller.dart';
 import 'package:apptask_management/app/utils/widget/MyFriends.dart';
+import 'package:apptask_management/app/utils/widget/style/peopleYouMayKnow.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:ionicons/ionicons.dart';
@@ -127,7 +128,8 @@ class FriendsView extends GetView<FriendsController> {
                               ? BorderRadius.circular(50)
                               : BorderRadius.circular(30),
                         ),
-                        child: Obx(() => authCon.hasilPencarian.isEmpty ?  Column(
+                        child: Obx(() => authCon.hasilPencarian.isEmpty
+                         ?  Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             // ignore: prefer_const_constructors
@@ -137,63 +139,15 @@ class FriendsView extends GetView<FriendsController> {
                                 fontSize: 30, 
                               color: AppColors.primaryText,),
                               ),
-                              SizedBox(
-                                height: 200,
-                                child: ListView.builder(
-                                  scrollDirection: Axis.horizontal,
-                                  shrinkWrap: true,
-                                  clipBehavior: Clip.antiAlias,
-                                  itemCount: 10,
-                                  itemBuilder: (context, index){
-                                    return Padding(
-                                      padding: const EdgeInsets.all(10.0),
-                                      child: Stack(children: [
-                                        ClipRRect(
-                                                              borderRadius: BorderRadius.circular(50),
-                                                              child: const Image(
-                                                                      image: NetworkImage(
-                                          'https://images.unsplash.com/photo-1511367461989-f85a21fda167?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8cHJvZmlsZXxlbnwwfHwwfHw%3D&w=1000&q=80'),
-                                                              ),
-                                                            ),
-                                                            const Positioned(
-                                                              bottom: 10,
-                                                              left: 50,
-                                                              child: Text(
-                                                                'Muhammad Abdurrohim', 
-                                                                style: TextStyle(color: Colors.white),
-                                                                ),
-                                                                ),
-                                                                Positioned(
-                                                                  bottom: 0,
-                                                                  right: 0,
-                                                                  child: SizedBox(
-                                                                    height: 36,
-                                                                    width: 36,
-                                                                    child: ElevatedButton(
-                                                                      onPressed: (){},
-                                                                      style: ElevatedButton.styleFrom(
-                                                                        padding: EdgeInsets.zero,
-                                                                        shape: RoundedRectangleBorder(
-                                                                          borderRadius: BorderRadius.circular(50),
-                                                                          ),
-                                                                      ),
-                                                                    child: Icon(Ionicons.add_circle_outline),
-                                                                    ),
-                                                                  ),
-                                                                  ),
-                                      ],
-                                      ),
-                                    );
-                                  }, 
-                                ),
-                              ),
+                              PeopleYouKnow(),
                               MyFriends(),
                               ])
                               :ListView.builder(
                                 padding: EdgeInsets.all(8),
                                 shrinkWrap: true,
                                 itemCount: authCon.hasilPencarian. length,
-                                itemBuilder: (context, index) => ListTile(leading: ClipRRect(
+                                itemBuilder: (context, index) => ListTile(
+                                  onTap:() => authCon.addFriends(authCon.hasilPencarian[index] ['email']), leading: ClipRRect(
                                                               borderRadius: BorderRadius.circular(50),
                                                               child:  Image(
                                                                       image: NetworkImage(authCon.
@@ -218,3 +172,4 @@ class FriendsView extends GetView<FriendsController> {
     );
   }
 }
+
