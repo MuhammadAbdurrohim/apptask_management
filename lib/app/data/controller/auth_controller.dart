@@ -153,7 +153,7 @@ Future<void> addFriends(String _emailFriends) async {
 
   }
   Stream<DocumentSnapshot<Map<String, dynamic>>> streamUsers(String email) {
-    return firestore.collection('users').doc(email).snapshots();
+    return firestore.collection('users').doc( email).snapshots();
 
   }
 
